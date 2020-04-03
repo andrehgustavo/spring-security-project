@@ -1,0 +1,145 @@
+html{
+    margin: 0;
+    padding: 0;
+}
+.md7-margin{
+	margin-top: 150px; 
+	margin-bottom: 100px;
+}
+
+.md7-color{
+    background-color: #001025;
+}
+
+.md7-panel{
+    background-color: #E0E0E0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    margin-bottom:20px;    
+}
+
+.md7-panel-body{
+    padding: 5%;
+}
+
+.md7-thead{
+	background-color: #001025;
+	color:white;
+}
+
+.md7-thead th{	
+	font-size: medium;
+	font-weight: bold;
+}
+
+.md7-panel-heading{
+    color: white;
+    font-family: Arial;
+    font-size: large;
+    font-weight: bold;
+    background-color: #001025;
+    padding: 10px 10px 10px 10px;
+} 
+
+.md7-welcome{
+    color: red;
+}
+
+.md7-img{
+    width: 40%;
+}
+
+.body-content{
+    margin-bottom: 40px;
+}
+
+.set-footer{
+    border-top: 1px;
+    bottom: 0;
+    left: 0;
+    
+    position: fixed;
+    width: 100%;
+}
+.formulario{
+    padding-top: 10%;
+    justify-content: center;
+
+}
+
+.card-encurtador{
+    width: 90vw;
+}
+
+.bloco{
+    width: 90vw;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#rd_qm-somos:checked ~ .sections{
+    margin-top: -100vh;
+}
+
+.bloco img{
+    width: 40%;
+}
+.button {
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+}
+
+.md7-button {
+    background-color: #001025;
+    color: white;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+
+.md7-button:hover{
+    background-color: #024296;
+}
+
+.md7-button-a a {
+    background-color: #001025;
+    color: white;
+    float: left;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 6px;
+  }
+  
+.md7-button-a a:hover:not(.active) {
+    background-color: #024296;
+}
+
+
+#listar{
+    margin-top: 10%;
+}
+
+td{
+    vertical-align:middle;
+}
+#md7-externa{
+    text-align: center;
+    width: 100%;
+}
+
+#md7-interna{
+    display: inline-block;
+}
+
+.error{
+	color:red;
+	text-align: left;
+}
