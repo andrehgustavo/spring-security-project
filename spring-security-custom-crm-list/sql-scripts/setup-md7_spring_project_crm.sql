@@ -1,22 +1,26 @@
 DROP DATABASE  IF EXISTS `md7_spring_project_crm`;
 
 CREATE DATABASE  IF NOT EXISTS `md7_spring_project_crm`;
-USE `spring_security_demo_bcrypt`;
+USE `md7_spring_project_crm`;
 
 --
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
-  `password` char(68) NOT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `password` char(80) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `user`
 --
 -- NOTE: The passwords are encrypted using BCrypt
 --
@@ -25,35 +29,66 @@ CREATE TABLE `users` (
 -- Default passwords here are: fun123
 --
 
-INSERT INTO `users` 
+INSERT INTO `user` (username,password,first_name,last_name,email)
 VALUES 
-('john','{bcrypt}$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K',1),
-('mary','{bcrypt}$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K',1),
-('susan','{bcrypt}$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K',1);
+('john','$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K','John','Doe','john@luv2code.com'),
+('mary','$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K','Mary','Public','mary@luv2code.com'),
+('susan','$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K','Susan','Adams','susan@luv2code.com');
 
 
 --
--- Table structure for table `authorities`
+-- Table structure for table `role`
 --
 
-DROP TABLE IF EXISTS `authorities`;
-CREATE TABLE `authorities` (
-  `username` varchar(50) NOT NULL,
-  `authority` varchar(50) NOT NULL,
-  UNIQUE KEY `authorities_idx_1` (`username`,`authority`),
-  CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+DROP TABLE IF EXISTS `role`;
+
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `role` (name)
+VALUES 
+('ROLE_EMPLOYEE'),('ROLE_ENGINEER'),('ROLE_ADMIN');
+
+--
+-- Table structure for table `users_roles`
+--
+
+DROP TABLE IF EXISTS `users_roles`;
+
+CREATE TABLE `users_roles` (
+  `user_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  
+  PRIMARY KEY (`user_id`,`role_id`),
+  
+  KEY `FK_ROLE_idx` (`role_id`),
+  
+  CONSTRAINT `FK_USER_05` FOREIGN KEY (`user_id`) 
+  REFERENCES `user` (`id`) 
+  ON DELETE NO ACTION ON UPDATE NO ACTION,
+  
+  CONSTRAINT `FK_ROLE` FOREIGN KEY (`role_id`) 
+  REFERENCES `role` (`id`) 
+  ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+SET FOREIGN_KEY_CHECKS = 1;
+
 --
--- Dumping data for table `authorities`
+-- Dumping data for table `users_roles`
 --
 
-INSERT INTO `authorities` 
+INSERT INTO `users_roles` (user_id,role_id)
 VALUES 
-('john','ROLE_EMPLOYEE'),
-('mary','ROLE_EMPLOYEE'),
-('mary','ROLE_MANAGER'),
-('susan','ROLE_EMPLOYEE'),
-('susan','ROLE_ADMIN');
-
-
+(1, 1),
+(2, 1),
+(2, 2),
+(3, 1),
+(3, 3)
